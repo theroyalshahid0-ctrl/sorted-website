@@ -150,7 +150,6 @@ a { text-decoration: none; color: var(--text-pure); }
     background: linear-gradient(135deg, rgba(245,158,11,0.03) 0%, rgba(250,250,250,1) 50%, rgba(16,185,129,0.03) 100%);
 }
 
-/* Animated Background Glow Orbs */
 .hero-glow { 
     position: absolute; 
     top: -10%; 
@@ -212,7 +211,7 @@ a { text-decoration: none; color: var(--text-pure); }
 .review-text { font-size: 1.05rem; color: var(--text-pure); font-style: italic; margin-bottom: 20px; line-height: 1.6; flex-grow: 1; }
 .reviewer-name { font-weight: 700; color: var(--text-muted); font-size: 0.9rem; }
 
-/* Gallery Icons */
+/* Gallery Icons Grid */
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
 .gallery-item { height: 260px; display: flex; align-items: center; justify-content: center; text-align: center; }
 .icon-showcase { display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; height: 100%; justify-content: center; }
@@ -319,9 +318,9 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
 .btn-mobile-call { background-color: var(--accent-primary); color: #111827 !important; }
 .btn-mobile-wa { background-color: #25D366; color: white !important; }
 
-/* Responsive Mobile Layout */
+/* Responsive Mobile Layout & Horizontal Swipes */
 @media (max-width: 992px) {
-    .booking-wrapper, .about-amc-wrapper { grid-template-columns: 1fr; gap: 40px; }
+    .booking-wrapper { grid-template-columns: 1fr; gap: 40px; }
     .booking-content { text-align: center; }
     .booking-perks { display: inline-block; text-align: left; }
     .footer-content { grid-template-columns: 1fr; gap: 40px; text-align: center; }
@@ -342,7 +341,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
     .booking-form-container { padding: 24px; }
     .modal-content { padding: 24px 16px; }
     
-    /* --- PEEKING HORIZONTAL CARDS WITH SNAP SCROLLING --- */
+    /* --- 1. SERVICES HORIZONTAL SWIPE WITH PEEK & SNAP --- */
     .services-grid {
         display: flex !important;
         flex-direction: row !important;
@@ -355,16 +354,60 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
         scrollbar-width: none; 
     }
     
-    .services-grid::-webkit-scrollbar {
-        display: none;
-    }
+    .services-grid::-webkit-scrollbar { display: none; }
 
-    /* Peeking effect: forces current card to take 82% width, letting next card show */
     .services-grid > .service-card {
         min-width: 82% !important;
         max-width: 82% !important;
         scroll-snap-align: start;
         flex-shrink: 0;
+    }
+
+    /* --- 2. EXPERTISE IN ACTION GALLERY HORIZONTAL SWIPE --- */
+    .gallery-grid {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        gap: 16px;
+        padding: 5px 20px 20px 20px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .gallery-grid::-webkit-scrollbar { display: none; }
+
+    .gallery-grid > .gallery-item {
+        min-width: 82% !important;
+        max-width: 82% !important;
+        height: 240px;
+        scroll-snap-align: start;
+        flex-shrink: 0;
+    }
+
+    /* --- 3. FOUNDER & AMC SECTION: FULL-SIZE READABLE CARDS (SWIPEABLE) --- */
+    .about-amc-wrapper {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        gap: 16px;
+        padding: 5px 20px 20px 20px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .about-amc-wrapper::-webkit-scrollbar { display: none; }
+
+    .about-amc-wrapper > .founder-card,
+    .about-amc-wrapper > .amc-card {
+        min-width: 88% !important;
+        max-width: 88% !important;
+        scroll-snap-align: start;
+        flex-shrink: 0;
+        padding: 28px 24px; /* Keeps text completely normal size and fully readable */
     }
 }
 
@@ -375,5 +418,4 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
 ::-webkit-scrollbar-track { background: var(--bg-main); }
 ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
-
 
