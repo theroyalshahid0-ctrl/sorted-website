@@ -9,15 +9,15 @@
     /* Original SORTED Amber */
     --accent-primary: #F59E0B;
     --accent-primary-hover: #D97706;
-    --accent-glow: rgba(245, 158, 11, 0.15);
+    --accent-glow: rgba(245, 158, 11, 0.2);
     
     --badge-premium: #10b981;
     --border-color: rgba(0, 0, 0, 0.08);
     --border-light: rgba(0, 0, 0, 0.05);
     
     /* Light Frosted Glassmorphism */
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: 1px solid rgba(255, 255, 255, 0.5);
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.6);
     --glass-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.06);
     
     --font-main: 'Plus Jakarta Sans', sans-serif;
@@ -138,9 +138,36 @@ a { text-decoration: none; color: var(--text-pure); }
 .nav-links a:not(.btn-primary) { font-weight: 600; color: #374151 !important; transition: var(--transition-smooth); font-size: 0.95rem; }
 .nav-links a:not(.btn-primary):hover { color: var(--accent-primary) !important; }
 
-/* Hero */
-.hero { position: relative; padding-top: 180px; padding-bottom: 100px; min-height: 85vh; display: flex; align-items: center; overflow: hidden; }
-.hero-glow { position: absolute; top: -20%; left: 10%; width: 60vw; height: 60vw; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%); z-index: -1; border-radius: 50%; }
+/* Hero Section with Dynamic Background Animation */
+.hero { 
+    position: relative; 
+    padding-top: 180px; 
+    padding-bottom: 100px; 
+    min-height: 85vh; 
+    display: flex; 
+    align-items: center; 
+    overflow: hidden; 
+    background: linear-gradient(135deg, rgba(245,158,11,0.03) 0%, rgba(250,250,250,1) 50%, rgba(16,185,129,0.03) 100%);
+}
+
+/* Animated Background Glow Orbs */
+.hero-glow { 
+    position: absolute; 
+    top: -10%; 
+    left: 5%; 
+    width: 50vw; 
+    height: 50vw; 
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.18) 0%, rgba(255,255,255,0) 70%); 
+    z-index: 0; 
+    border-radius: 50%; 
+    animation: heroOrbFloat 8s ease-in-out infinite alternate;
+}
+
+@keyframes heroOrbFloat {
+    0% { transform: translateY(0px) scale(1); }
+    100% { transform: translateY(30px) scale(1.1); }
+}
+
 .hero-content { max-width: 850px; position: relative; z-index: 1; }
 .trust-badge { display: inline-block; padding: 8px 16px; border-radius: 30px !important; font-size: 0.9rem; font-weight: 600; margin-bottom: 24px; color: var(--accent-primary); }
 .hero h1 { font-size: 4rem; margin-bottom: 24px; letter-spacing: -1.5px; line-height: 1.1; }
@@ -152,9 +179,9 @@ a { text-decoration: none; color: var(--text-pure); }
 .area-banner { padding: 20px 0; font-size: 1.05rem; border-radius: 0 !important; }
 
 /* Sections */
-.section { padding: 100px 0; }
+.section { padding: 90px 0; }
 .bg-darker { background-color: var(--bg-darker); }
-.section-header { text-align: center; margin-bottom: 60px; }
+.section-header { text-align: center; margin-bottom: 50px; }
 .section-header h2 { font-size: 2.5rem; margin-bottom: 16px; }
 .section-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 650px; margin: 0 auto; }
 
@@ -185,7 +212,7 @@ a { text-decoration: none; color: var(--text-pure); }
 .review-text { font-size: 1.05rem; color: var(--text-pure); font-style: italic; margin-bottom: 20px; line-height: 1.6; flex-grow: 1; }
 .reviewer-name { font-weight: 700; color: var(--text-muted); font-size: 0.9rem; }
 
-/* Gallery Icons (RESTORED) */
+/* Gallery Icons */
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
 .gallery-item { height: 260px; display: flex; align-items: center; justify-content: center; text-align: center; }
 .icon-showcase { display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; height: 100%; justify-content: center; }
@@ -201,7 +228,6 @@ a { text-decoration: none; color: var(--text-pure); }
     transform: scale(1.1) translateY(-5px);
 }
 .gallery-item:hover .showcase-content { opacity: 1; transform: translateY(5px); }
-
 
 /* Corporate AMC & Founder */
 .about-amc-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -293,7 +319,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
 .btn-mobile-call { background-color: var(--accent-primary); color: #111827 !important; }
 .btn-mobile-wa { background-color: #25D366; color: white !important; }
 
-/* Responsive Mobile Layout (WITH HORIZONTAL SWIPE INCLUDED) */
+/* Responsive Mobile Layout */
 @media (max-width: 992px) {
     .booking-wrapper, .about-amc-wrapper { grid-template-columns: 1fr; gap: 40px; }
     .booking-content { text-align: center; }
@@ -302,6 +328,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
     .footer-brand p { margin: 16px auto; }
     .footer-contact p { justify-content: center; }
 }
+
 @media (max-width: 768px) {
     .nav-links { display: none; }
     .hero { padding-top: 120px; text-align: center; min-height: auto; }
@@ -315,26 +342,29 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
     .booking-form-container { padding: 24px; }
     .modal-content { padding: 24px 16px; }
     
-    /* HORIZONTAL SWIPE LOGIC FOR SERVICES */
+    /* --- PEEKING HORIZONTAL CARDS WITH SNAP SCROLLING --- */
     .services-grid {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
         overflow-x: auto;
-        gap: 15px;
-        padding-bottom: 15px;
+        gap: 16px;
+        padding: 5px 20px 20px 20px;
+        scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
-        scrollbar-width: none; /* Hides scrollbar in Firefox */
-        -ms-overflow-style: none; /* Hides scrollbar in IE/Edge */
+        scrollbar-width: none; 
     }
     
-    /* Hides the scrollbar for Chrome/Safari/Opera for a cleaner look */
     .services-grid::-webkit-scrollbar {
         display: none;
     }
 
+    /* Peeking effect: forces current card to take 82% width, letting next card show */
     .services-grid > .service-card {
-        min-width: 280px;
+        min-width: 82% !important;
+        max-width: 82% !important;
+        scroll-snap-align: start;
+        flex-shrink: 0;
     }
 }
 
@@ -345,4 +375,5 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
 ::-webkit-scrollbar-track { background: var(--bg-main); }
 ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
+
 
