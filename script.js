@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+   
     // 1. SCROLL REVEAL ANIMATIONS
     const revealElements = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. BULLETPROOF MODAL LOGIC 
+    // 3. BULLETPROOF MODAL LOGIC
     const serviceData = {
         mobiles: {
             title: "Mobile Repair",
@@ -65,9 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         cutlery: {
             title: "Cutlery Sharpening",
-            desc: "Professional sharpening and edge restoration for standard kitchen utility knives and culinary tools.",
+            desc: "Professional sharpening and edge restoration. 🌟 SPECIAL OFFER: Sharpen up to 2 knives for FREE within the flat ₹300 pickup and drop charge!",
             process: "1. Edge Assessment\n2. Professional Grinding & Honing\n3. Detail Polishing\n4. Sharpness Validation",
-            benefits: "Factory-Grade Edges\nSafe Transport & Handling\nQuick Turnaround"
+            benefits: "Up to 2 Knives FREE (within ₹300 fee)\nFactory-Grade Edges\nSafe Transport & Handling"
         },
         geyser: {
             title: "Geyser Service",
@@ -164,9 +164,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const brandGroup = document.getElementById('brandGroup');
     const problemGroup = document.getElementById('problemGroup');
     const bookingForm = document.getElementById('bookingForm');
-    
-    const modelGroup = document.getElementById('modelGroup'); 
-    const modelInput = document.getElementById('serviceModel'); 
+   
+    const modelGroup = document.getElementById('modelGroup');
+    const modelInput = document.getElementById('serviceModel');
 
     categorySelect.addEventListener('change', (e) => {
         const category = e.target.value;
@@ -175,20 +175,19 @@ document.addEventListener('DOMContentLoaded', () => {
         brandSelect.innerHTML = '<option value="" disabled selected>Select Brand</option>';
         problemSelect.innerHTML = '<option value="" disabled selected>Select Diagnosed Issue</option>';
 
-        // FIXED: Now both Electrician AND Cutlery will hide the awkward brand/model fields
         if (category === 'Electrician' || category === 'Cutlery') {
             brandGroup.style.display = 'none';
-            brandSelect.required = false; 
-            
-            modelGroup.style.display = 'none'; 
-            modelInput.required = false; 
+            brandSelect.required = false;
+           
+            modelGroup.style.display = 'none';
+            modelInput.required = false;
         } else {
             brandGroup.style.display = 'block';
-            brandSelect.required = true; 
-            
-            modelGroup.style.display = 'block'; 
-            modelInput.required = true; 
-            
+            brandSelect.required = true;
+           
+            modelGroup.style.display = 'block';
+            modelInput.required = true;
+           
             options.brands.forEach(brand => {
                 brandSelect.appendChild(new Option(brand, brand));
             });
@@ -213,26 +212,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const category = categorySelect.options[categorySelect.selectedIndex].text;
         const brand = brandSelect.value;
         const problem = problemSelect.value;
-        const model = modelInput ? modelInput.value.trim() : ""; 
+        const model = modelInput ? modelInput.value.trim() : "";
 
         let message = `*🌟 SORTED PRIORITY BOOKING 🌟*\n\n`;
         message += `*CLIENT DETAILS*\nName: ${name}\nPhone: ${phone}\nAddress/Area: ${address}\n\n`;
         message += `*DIAGNOSTIC REQUEST*\nCategory: ${category}\n`;
-        
-        // FIXED: Prevent WhatsApp from saying "Brand: undefined" for Cutlery
+       
         if (categorySelect.value !== 'Electrician' && categorySelect.value !== 'Cutlery') {
             message += `Brand: ${brand}\n`;
-            message += `Exact Model / Item: ${model}\n`; 
+            message += `Exact Model / Item: ${model}\n`;
         }
-        
+       
         message += `Reported Issue: ${problem}\n\n`;
         message += `*REQUESTED SCHEDULE*\nDate: ${date}\nTime Slot: ${timeSlot}\n\n`;
         message += `*Note:* Client acknowledges standard ₹300 Visiting/Pickup fee applies.`;
 
         const encodedMessage = encodeURIComponent(message);
-        
+       
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        const waUrl = isMobile 
+        const waUrl = isMobile
             ? `https://api.whatsapp.com/send?phone=919164248035&text=${encodedMessage}`
             : `https://web.whatsapp.com/send?phone=919164248035&text=${encodedMessage}`;
 

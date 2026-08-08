@@ -1,13 +1,13 @@
 :root {
     /* Premium Editorial Light Theme */
-    --bg-main: #FAFAFA; 
-    --bg-darker: #FFFFFF; 
+    --bg-main: #FAFAFA;
+    --bg-darker: #FFFFFF;
     
-    --text-pure: #111827; 
+    --text-pure: #111827;
     --text-muted: #6B7280;
     
     /* Original SORTED Amber */
-    --accent-primary: #F59E0B; 
+    --accent-primary: #F59E0B;
     --accent-primary-hover: #D97706;
     --accent-glow: rgba(245, 158, 11, 0.15);
     
@@ -27,10 +27,10 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-    background-color: var(--bg-main); 
+    background-color: var(--bg-main);
     color: var(--text-pure);
-    font-family: var(--font-main); 
-    line-height: 1.7; 
+    font-family: var(--font-main);
+    line-height: 1.7;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
@@ -98,7 +98,7 @@ a { text-decoration: none; color: var(--text-pure); }
     border: var(--glass-border);
     box-shadow: var(--glass-shadow);
     border-radius: 16px;
-    position: relative; 
+    position: relative;
     overflow: hidden;
     transition: var(--transition-smooth);
 }
@@ -109,9 +109,9 @@ a { text-decoration: none; color: var(--text-pure); }
     }
 }
 .glass-card:hover {
-    border-color: rgba(245, 158, 11, 0.4); 
+    border-color: rgba(245, 158, 11, 0.4);
     background: #FFFFFF;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
 }
 
 /* Animations */
@@ -167,9 +167,9 @@ a { text-decoration: none; color: var(--text-pure); }
     border: 1px solid rgba(16, 185, 129, 0.3); padding: 4px 10px;
     border-radius: 20px; font-size: 0.75rem; font-weight: 700;
 }
-.icon-wrapper { 
-    width: 60px; height: 60px; background: rgba(245, 158, 11, 0.1); 
-    border-radius: 12px; display: flex; align-items: center; justify-content: center; 
+.icon-wrapper {
+    width: 60px; height: 60px; background: rgba(245, 158, 11, 0.1);
+    border-radius: 12px; display: flex; align-items: center; justify-content: center;
     margin-bottom: 24px; transition: var(--transition-smooth);
 }
 .service-icon { font-size: 1.8rem; color: var(--accent-primary); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -293,7 +293,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
 .btn-mobile-call { background-color: var(--accent-primary); color: #111827 !important; }
 .btn-mobile-wa { background-color: #25D366; color: white !important; }
 
-/* Responsive Mobile Layout */
+/* Responsive Mobile Layout (WITH HORIZONTAL SWIPE INCLUDED) */
 @media (max-width: 992px) {
     .booking-wrapper, .about-amc-wrapper { grid-template-columns: 1fr; gap: 40px; }
     .booking-content { text-align: center; }
@@ -314,6 +314,28 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
     .form-row { grid-template-columns: 1fr; gap: 0; }
     .booking-form-container { padding: 24px; }
     .modal-content { padding: 24px 16px; }
+    
+    /* HORIZONTAL SWIPE LOGIC FOR SERVICES */
+    .services-grid {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        gap: 15px;
+        padding-bottom: 15px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Hides scrollbar in Firefox */
+        -ms-overflow-style: none; /* Hides scrollbar in IE/Edge */
+    }
+    
+    /* Hides the scrollbar for Chrome/Safari/Opera for a cleaner look */
+    .services-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .services-grid > .service-card {
+        min-width: 280px;
+    }
 }
 
 /* PREMIUM MICRO-INTERACTIONS */
