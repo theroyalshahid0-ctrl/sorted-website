@@ -418,4 +418,70 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
 ::-webkit-scrollbar-track { background: var(--bg-main); }
 ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
+/* =========================================
+   SORTED HORIZONTAL CAROUSEL STYLES
+   ========================================= */
+.carousel-container {
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+
+.carousel-title {
+  padding-left: 20px;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #111;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 0 20px 20px 20px;
+  scroll-snap-type: x mandatory;
+  /* Hides the ugly scrollbar for a clean app look */
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-card {
+  flex: 0 0 85%; /* This 85% creates the perfect PEEK effect! */
+  background-color: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 16px;
+  padding: 24px;
+  scroll-snap-align: center; /* Snaps the card perfectly to the middle */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+}
+
+.carousel-card h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #111;
+}
+
+.carousel-card p {
+  margin: 0;
+  color: #555;
+  line-height: 1.5;
+}
+/* =========================================
+   DESKTOP/LAPTOP VIEW (Grid instead of swipe)
+   ========================================= */
+@media (min-width: 768px) {
+  .carousel-track {
+    justify-content: center; /* Centers the cards on a big screen */
+    overflow-x: visible; /* Removes the scrolling behavior */
+  }
+  
+  .carousel-card {
+    flex: 0 0 30%; /* Makes each card take up exactly one-third of the row */
+    max-width: 350px; /* Stops the cards from getting too stretched out */
+  }
+}
+
 
